@@ -1,0 +1,17 @@
+publishing {
+    repositories {
+        maven {
+            url  = 'https://dl.bintray.com/florent37/maven'
+        }
+    }
+
+    publications {
+        mavenProject(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+
+            withPom(pom)
+        }
+    }
+}
