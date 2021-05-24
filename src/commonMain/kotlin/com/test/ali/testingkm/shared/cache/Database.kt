@@ -1,10 +1,55 @@
 package com.test.ali.testingkm.shared.cache
 
+import com.squareup.sqldelight.db.SqlDriver
 import com.test.ali.testingkm.shared.entity.RocketLaunch
 import com.test.ali.testingkm.shared.entity.Rocket
 import com.test.ali.testingkm.shared.entity.Links
 
 internal class Database(configurations: Configurations) {
+
+
+
+
+    /*class SharedDatabase(
+        private val driverProvider: suspend (SqlDriver.Schema) -> SqlDriver
+    ) {
+        private var database: Database? = null
+
+        suspend fun initDatabase() {
+            if (database == null) {
+                database = driverProvider(AppDatabase.Schema).createDatabase()
+            }
+        }
+
+        suspend operator fun <R> invoke(block: suspend (Database) -> R): R {
+            initDatabase()
+            return block(database!!)
+        }
+
+        private fun SqlDriver.createDatabase(): Database { *//* ... *//* }
+    }
+
+    val sharedDb = SharedDatabase(::createTestDbDriver)
+    class DataRepository(
+        private val withDatabase: SharedDatabase = sharedDb
+    ) {
+        suspend fun getData() = withDatabase { database ->
+            *//* Do something with the database *//*
+        }
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private val database = AppDatabase(configurations.createDriver())
     private val dbQuery = database.appDatabaseQueries
